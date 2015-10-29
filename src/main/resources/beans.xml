@@ -8,10 +8,11 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:component-scan base-package="com.grushenko.test" />
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql:../tripcomposer;create=true" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/tripcomposer;create=true" />
 		<property name="user" value="postgres" />
 		<property name="password" value="admin" />
 
@@ -47,5 +48,4 @@
 	</bean>
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

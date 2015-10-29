@@ -21,8 +21,8 @@ public class Country {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long countryId;
-	private String name;
-	private String ISOCode;
+	private String countryName;
+	private String countryISOCode;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "country")
 	private Set<City> cities = new HashSet<City>();
 
@@ -35,19 +35,19 @@ public class Country {
 	}
 
 	public String getName() {
-		return name;
+		return countryName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.countryName = name;
 	}
 
 	public String getISOCode() {
-		return ISOCode;
+		return countryISOCode;
 	}
 
 	public void setISOCode(String iSOCode) {
-		ISOCode = iSOCode;
+		countryISOCode = iSOCode;
 	}
 
 	public Set<City> getCities() {

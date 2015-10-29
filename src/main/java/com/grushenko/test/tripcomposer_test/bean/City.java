@@ -18,7 +18,7 @@ public class City {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cityId;
-	private String name;
+	private String cityName;
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
@@ -32,11 +32,11 @@ public class City {
 	}
 
 	public String getName() {
-		return name;
+		return cityName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.cityName = name;
 	}
 
 	public Country getCountry() {

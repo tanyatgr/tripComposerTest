@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Request {
 
-	private String key = "$1$12309856euBrWcjT767K2sP9MHcVS/";
+	private final String key = "$1$12309856$euBrWcjT767K2sP9MHcVS/";
 	private String echo;
 
 	public Request() {
