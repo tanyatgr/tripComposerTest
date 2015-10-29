@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +25,8 @@ public class Country {
 	private long countryId;
 	private String countryName;
 	private String countryISOCode;
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "country")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JoinTable(name = "city", joinColumns = @JoinColumn(name = "countryId") , inverseJoinColumns = @JoinColumn(name = "cityId") )
 	private Set<City> cities = new HashSet<City>();
 
 	public long getId() {

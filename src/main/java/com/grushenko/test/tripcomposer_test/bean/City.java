@@ -20,7 +20,7 @@ public class City {
 	private long cityId;
 	private String cityName;
 	@ManyToOne
-	@JoinColumn(name = "country_id")
+	@JoinColumn(name = "countryId")
 	private Country country;
 
 	public long getCity_id() {

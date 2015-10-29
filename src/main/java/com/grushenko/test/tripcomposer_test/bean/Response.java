@@ -44,7 +44,7 @@ public class Response {
 
 	public void setCountries(List<Country> countries) {
 		this.countries = countries;
-	}	
+	}
 
 	public long getTime() {
 		return time;

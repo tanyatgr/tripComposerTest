@@ -21,7 +21,7 @@ public class App {
 
 	}
 
-	private void run() {
+	public void run() {
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
 		Request request = new Request();
