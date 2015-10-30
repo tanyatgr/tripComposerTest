@@ -1,6 +1,5 @@
 package com.grushenko.test.tripcomposer_test.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,22 +12,28 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "response")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,property="@id")
 public class Response {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private long responseId;
+	
 	private long time;
 	private String echo;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(joinColumns = { @JoinColumn(name = "responseId") }, inverseJoinColumns = {
 			@JoinColumn(name = "countryId") })
-	List<Country> countries = new ArrayList<Country>();
+	List<Country> countries;
 
 	public long getResponseId() {
 		return responseId;

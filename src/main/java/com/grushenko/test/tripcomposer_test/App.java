@@ -21,6 +21,7 @@ public class App {
 
 	}
 
+	@SuppressWarnings("resource")
 	public void run() {
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
@@ -29,10 +30,8 @@ public class App {
 		try {
 			jsonInString = mapper.writeValueAsString(request);
 		} catch (JsonProcessingException e) {
-			// logger.error(e.getMessage());
 			return;
 		}
-		// logger.info("Generated JSON :" + jsonInString);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(jsonInString, headers);

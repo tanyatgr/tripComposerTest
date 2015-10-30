@@ -33,9 +33,10 @@
 			<bean
 				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 				<property value="true" name="showSql" />
-				<property value="true" name="generateDdl" />
+				<property value="true" name="generateDdl" />				
 				<property name="databasePlatform"
 					value="org.eclipse.persistence.platform.database.PostgreSQLPlatform" />
+			
 			</bean>
 
 
