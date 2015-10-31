@@ -1,7 +1,5 @@
 package com.grushenko.test.tripcomposer_test;
 
-import java.io.IOException;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpEntity;
@@ -37,22 +35,10 @@ public class App {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(jsonInString, headers);
-		String responsestr = restTemplate.postForObject(URL, entity, String.class);
-		Response response ;
-		try {
-			response = mapper.readValue(responsestr, Response.class);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*Response response = restTemplate.postForObject(URL, entity, Response.class);
+		Response response = restTemplate.postForObject(URL, entity, Response.class);
 		System.out.println(response.getCountries().size());
-		
-		System.out.println("===============================");
-		System.out.println(response.getCountries().size());
-
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		ResponseService responseService = context.getBean(ResponseService.class);
-		responseService.save(response);*/
+		responseService.save(response);
 	}
 }

@@ -18,15 +18,13 @@ public class ResponseServiceImpl implements ResponseService {
 	@Override
 	@Transactional
 	public void save(Response response) {
-		responseDao.save(response);
-
+		responseDao.saveOrUpdate(response);
 	}
 
 	@Override
 	@Transactional
 	public void remove(long id) {
 		responseDao.remove(id);
-
 	}
 
 	@Override

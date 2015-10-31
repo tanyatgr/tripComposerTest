@@ -10,29 +10,27 @@ import com.grushenko.test.tripcomposer_test.dao.CityDao;
 import com.grushenko.test.tripcomposer_test.service.CityService;
 
 @Named
-public class CityServiceImpl implements CityService{
-	
+public class CityServiceImpl implements CityService {
+
 	@Inject
 	CityDao cityDao;
 
 	@Override
 	@Transactional
 	public void save(City city) {
-		cityDao.save(city);
-		
+		cityDao.saveOrUpdate(city);
 	}
 
 	@Override
 	@Transactional
 	public void remove(long id) {
 		cityDao.remove(id);
-		
+
 	}
 
 	@Override
 	@Transactional
 	public City findById(long id) {
-		// TODO Auto-generated method stub
 		return cityDao.findById(id);
 	}
 

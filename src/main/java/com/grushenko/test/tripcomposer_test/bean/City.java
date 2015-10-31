@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,26 +23,40 @@ public class City {
 	@JsonProperty
 	private String cityName;
 	
-	public City(){}
+	@ManyToOne
+	@JoinColumn(name = "countryId")			
+	@JsonIgnore
+	private Country country;
 	
-	public City(String cityName) {
-		this.cityName = cityName;
-	}
+	public City(){}
 
-	public long getCity_id() {
+	public long getCityId() {
 		return cityId;
 	}
 
-	public void setCity_id(long city_id) {
-		this.cityId = city_id;
+	public void setCityId(long cityId) {
+		this.cityId = cityId;
 	}
 
-	public String getName() {
+	public String getCityName() {
 		return cityName;
 	}
 
-	public void setName(String name) {
-		this.cityName = name;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	
+	
+
+	
+	
 
 }

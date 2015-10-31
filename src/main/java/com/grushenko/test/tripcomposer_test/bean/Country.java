@@ -3,13 +3,10 @@ package com.grushenko.test.tripcomposer_test.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,19 +23,11 @@ public class Country {
 	private String countryName;
 	private String countryISOCode;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name = "cityId")
-	private List<City> cities = new ArrayList<City>();
-	
-	public Country(){}
+	@OneToMany(mappedBy="country")
+	private List<City> cities = new ArrayList<>();
 
-	public Country(String countryName, String countryISOCode, List<City> cities) {
-		super();
-		this.countryName = countryName;
-		this.countryISOCode = countryISOCode;
-		this.cities = cities;
+	public Country() {
 	}
-
 	public long getCountryId() {
 		return countryId;
 	}
@@ -70,7 +59,5 @@ public class Country {
 	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
-
-
 
 }

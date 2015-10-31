@@ -10,23 +10,21 @@ import com.grushenko.test.tripcomposer_test.dao.CountryDao;
 import com.grushenko.test.tripcomposer_test.service.CountryService;
 
 @Named
-public class CountryServiceImpl implements CountryService{
-	
+public class CountryServiceImpl implements CountryService {
+
 	@Inject
 	CountryDao countryDao;
 
 	@Override
 	@Transactional
 	public void save(Country country) {
-		countryDao.save(country);
-		
+		countryDao.saveOrUpdate(country);
 	}
 
 	@Override
 	@Transactional
 	public void remove(long id) {
 		countryDao.remove(id);
-		
 	}
 
 	@Override

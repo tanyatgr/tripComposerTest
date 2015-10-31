@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-
 import com.grushenko.test.tripcomposer_test.dao.GenericDao;
 
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
@@ -42,6 +41,11 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	@Override
 	public T update(final T t) {
 		return this.em.merge(t);
+	}
+
+	@Override
+	public T saveOrUpdate(final T t) {
+		return em.merge(t);
 	}
 
 }

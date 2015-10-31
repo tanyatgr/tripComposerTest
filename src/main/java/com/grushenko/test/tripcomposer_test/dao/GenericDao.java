@@ -5,5 +5,6 @@ public interface GenericDao<T> {
 	void remove(Object id);
 	T findById(Object id);
 	T update(T t);
+	T saveOrUpdate(T t);
 
 }
