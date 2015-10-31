@@ -1,6 +1,7 @@
 package com.grushenko.test.tripcomposer_test.bean;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,62 +9,68 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "country")
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Country {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonIgnore
 	private long countryId;
-	
+
 	private String countryName;
 	private String countryISOCode;
-	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "country")
-	private Set<City> cities;
 
-	public long getId() {
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
+	@JoinColumn(name = "cityId")
+	private List<City> cities = new ArrayList<City>();
+	
+	public Country(){}
+
+	public Country(String countryName, String countryISOCode, List<City> cities) {
+		super();
+		this.countryName = countryName;
+		this.countryISOCode = countryISOCode;
+		this.cities = cities;
+	}
+
+	public long getCountryId() {
 		return countryId;
 	}
 
-	public void setId(long id) {
-		this.countryId = id;
+	public void setCountryId(long countryId) {
+		this.countryId = countryId;
 	}
 
-	public String getName() {
+	public String getCountryName() {
 		return countryName;
 	}
 
-	public void setName(String name) {
-		this.countryName = name;
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 
-	public String getISOCode() {
+	public String getCountryISOCode() {
 		return countryISOCode;
 	}
 
-	public void setISOCode(String iSOCode) {
-		countryISOCode = iSOCode;
+	public void setCountryISOCode(String countryISOCode) {
+		this.countryISOCode = countryISOCode;
 	}
 
-	public Set<City> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 
-	public void setCities(Set<City> cities) {
+	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
+
+
 
 }
