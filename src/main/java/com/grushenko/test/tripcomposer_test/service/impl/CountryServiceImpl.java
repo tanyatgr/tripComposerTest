@@ -18,7 +18,7 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	@Transactional
 	public void save(Country country) {
-		countryDao.saveOrUpdate(country);
+		countryDao.save(country);
 	}
 
 	@Override

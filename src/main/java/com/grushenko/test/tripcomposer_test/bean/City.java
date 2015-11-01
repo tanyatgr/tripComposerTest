@@ -23,11 +23,7 @@ public class City {
 	@JsonProperty
 	private String cityName;
 	
-	@ManyToOne
-	@JoinColumn(name = "countryId")			
-	@JsonIgnore
-	private Country country;
-	
+
 	public City(){}
 
 	public long getCityId() {
@@ -46,13 +42,6 @@ public class City {
 		this.cityName = cityName;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
 	
 	
 

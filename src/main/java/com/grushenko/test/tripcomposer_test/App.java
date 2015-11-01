@@ -1,5 +1,7 @@
 package com.grushenko.test.tripcomposer_test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpEntity;
@@ -14,6 +16,7 @@ import com.grushenko.test.tripcomposer_test.service.ResponseService;
 
 public class App {
 	private String URL = "http://tripcomposer.net/rest/test/countries/get";
+	private static final Logger log = LogManager.getLogger();
 
 	public static void main(String[] args) {
 		App application = new App();
@@ -29,14 +32,15 @@ public class App {
 		String jsonInString = "";
 		try {
 			jsonInString = mapper.writeValueAsString(request);
+			log.info("Generated json : " + jsonInString);
 		} catch (JsonProcessingException e) {
+			log.error(e.getMessage(),e);
 			return;
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(jsonInString, headers);
 		Response response = restTemplate.postForObject(URL, entity, Response.class);
-		System.out.println(response.getCountries().size());
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		ResponseService responseService = context.getBean(ResponseService.class);
 		responseService.save(response);

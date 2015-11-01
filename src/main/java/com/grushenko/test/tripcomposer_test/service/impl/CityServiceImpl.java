@@ -17,7 +17,7 @@ public class CityServiceImpl implements CityService {
 
 	@Override
 	@Transactional
-	public void save(City city) {
+	public void save(City city) {		
 		cityDao.saveOrUpdate(city);
 	}
 

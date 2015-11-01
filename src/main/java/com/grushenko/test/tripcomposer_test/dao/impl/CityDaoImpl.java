@@ -7,5 +7,8 @@ import com.grushenko.test.tripcomposer_test.dao.CityDao;
 
 @Repository
 public class CityDaoImpl extends GenericDaoImpl<City> implements CityDao{
+	
+	
+
 
 }
