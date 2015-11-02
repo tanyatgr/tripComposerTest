@@ -18,7 +18,12 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	@Transactional
 	public void save(Country country) {
-		countryDao.save(country);
+		Country savedCountry = countryDao.findCountryByNameAndISO(country);
+		if (savedCountry == null) {
+			countryDao.saveOrUpdate(country);
+		}else{
+			countryDao.updateCities(savedCountry.getCountryId(), country.getCities());
+		}
 	}
 
 	@Override

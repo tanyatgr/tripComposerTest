@@ -21,12 +21,12 @@ public class App {
 	public static void main(String[] args) {
 		App application = new App();
 		application.run();
-
 	}
 
 	@SuppressWarnings("resource")
 	public void run() {
 		RestTemplate restTemplate = new RestTemplate();
+		//create objectMapper to produce json from Request class
 		ObjectMapper mapper = new ObjectMapper();
 		Request request = new Request();
 		String jsonInString = "";
@@ -37,9 +37,11 @@ public class App {
 			log.error(e.getMessage(),e);
 			return;
 		}
+		//httpEntities for adding json in request header
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<String>(jsonInString, headers);
+		//sending post 
 		Response response = restTemplate.postForObject(URL, entity, Response.class);
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		ResponseService responseService = context.getBean(ResponseService.class);

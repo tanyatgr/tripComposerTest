@@ -1,7 +1,7 @@
 package com.grushenko.test.tripcomposer_test.bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class Country {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "countryId")
-	private List<City> cities = new ArrayList<>();
+	private Set<City> cities = new HashSet<>();
 
 	public Country() {
 	}
@@ -55,13 +55,13 @@ public class Country {
 	public void setCountryISOCode(String countryISOCode) {
 		this.countryISOCode = countryISOCode;
 	}
-
-	public List<City> getCities() {
+	public Set<City> getCities() {
 		return cities;
 	}
-
-	public void setCities(List<City> cities) {
+	public void setCities(Set<City> cities) {
 		this.cities = cities;
 	}
+
+
 
 }
